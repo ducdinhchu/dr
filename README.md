@@ -1,5 +1,4 @@
 # Docker Cheet Sheet
-
 ### 1. Docker Build Commands
 - `docker build -t <imagename> .`:build a docker image from a dockerfile in the current directory and tag it with a name
 - `docker build --no-cache -t <imagename> .`: build a docker image without using the cache
@@ -22,4 +21,19 @@
 - `docker ps -a`: list all containers, including stopped ones
 - `docker logs <containerid>`: fetch the logs of a specified container
 - `docker inspect <containerid>`: inspect detailed information about a container
-### 3. Docker Clean Up Commands 
+### 4. Docker Run Commands
+- `docker run -d <imagename>`: run a docker images as a container in detached mode
+- `docker run -p <hostport>:<containerport> <imagename>`: publish container ports to the host
+- `docker run -v <hostpath>:<containerpath> <imagename>`: mount the host directory or volume to the container
+- `docker run --name <containername> <imagename>`: assign a name to the container
+### 5. Docker Clean Up Commands
+- `docker system prune`: remove all unused docker resources, including containers, images, networks, and volumns
+- `docker container prune`: remove all stopped containers
+- `docker image prune`: remove unused images
+- `docker volumn prune`: remove unused volumns
+- `docker network prune`: remove unused networks
+### 6. Image Commands
+- `docker images`: list available docker images
+- `docker pull <imagename>`: pull a docker image from a docker registry
+- `docker push <imagename>`: push a docker image to a docker registry
+- `docker rmi <imageid>`: remove a docker image
