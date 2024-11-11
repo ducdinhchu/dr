@@ -11,3 +11,15 @@
 - `docker build -t <imagename> <pathtocontext>`: specify the directory containing the dockerfile and related files
 - `docker build --target <stagename> -t <imagename> .`: build up to a specific stage in a multi-stage dockerfile
 - `DOCKER_BUILDKIT=1 docker build -t registry.fci.vn/fptai-nlp/llama-factory:1.0.1 -f Dockerfile .`: BUILDKIT, build technology from docker, DOCKER_BUILD=1 mean creating a swap partition to build on machine 1
+### 2. Container Interaction Commands
+- `docker run <imagename>`: run a docker image as a container
+- `docker start <containerid>`: start a stopped container
+- `docker stop <containerid>`: stop a running container
+- `docker restart <containerid>`: restart a running container
+- `docker exec -it <containerid> <command>`: execute a command inside a running container interactively
+### 3. Container Inspection Commands
+- `docker ps`: list running containers
+- `docker ps -a`: list all containers, including stopped ones
+- `docker logs <containerid>`: fetch the logs of a specified container
+- `docker inspect <containerid>`: inspect detailed information about a container
+### 3. Docker Clean Up Commands 
