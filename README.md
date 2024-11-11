@@ -37,3 +37,11 @@
 - `docker pull <imagename>`: pull a docker image from a docker registry
 - `docker push <imagename>`: push a docker image to a docker registry
 - `docker rmi <imageid>`: remove a docker image
+### 7. Docker Env Variables
+- `-e` or `--env`: set env variables when running a container
+- `docker run -e <varname>=<varvalue> <imagename>`: set an env variable when running a container
+### 8. Docker Compose Commands
+- `docker-compose up`: create and start containers defined in a docker compose file
+- `docker-compose down`: stop and remove containers defined in a docker compose file
+- `docker-compose ps`: list containers defined in a docker compose file
+- `docker-compose log`: view logs of containers defined in a docker compose file
