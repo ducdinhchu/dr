@@ -45,3 +45,38 @@
 - `docker-compose down`: stop and remove containers defined in a docker compose file
 - `docker-compose ps`: list containers defined in a docker compose file
 - `docker-compose log`: view logs of containers defined in a docker compose file
+
+# Dockerfile
+```dockerfile
+# Activate Docker BuildKit, which enhances build performance and provides advanced features
+# DOCKER_BUILDKIT=1 docker build -t registry.fci.vn/fptai-nlp/llama-factory:1.0.1 -f Dockerfile .
+
+# The `FROM` instruction specifies the base image for subsequent instructions. This Dockerfile uses NVIDIA's PyTorch image from the NVIDIA NGC (NVIDIA GPU Cloud) registry,
+# which is optimized for GPU-accelerated deep learning applications.
+From nvcr.io/nvidia/pytorch:23.12-py3
+
+# Set env variables
+ENV LC_ALL=C.UTF-8 LANG=C.UTF-8
+
+# Set working directory
+WORKDIR /nlp/
+
+# Install tmux and clean up
+RUN apt-get update && \
+    apt-get install -y tmux && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy requirements.txt file into container
+COPY requirements.txt /nlp/requirements.txt
+
+# Upgrade pip and install packages specified in requirements.txt
+RUN pip install -U pip \
+&& pip install -r requirements.txt
+
+# Install flash-attn and upgrade nvidia-nccl-cu12
+RUN MAX_JOBS=16 pip install flash-attn==2.3.3 --no-build-isolation
+RUN pip install --upgrade nvidia-nccl-cu12==2.19.3
+
+# Install deepspeed
+RUN pip install deepspeed
+```
