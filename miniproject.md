@@ -51,3 +51,5 @@ services:
             - DOCKER_BUILDKIT=1
 ```
 # C. docker-compose up
+- `docker-compose up --build`
+- `docker exec -it llama_container /bin/bash` 
