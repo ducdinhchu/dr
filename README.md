@@ -100,7 +100,7 @@ services:
     ports:
       - "7860:7860" # map host's port to container's port
       - "8000:8000"
-    ipc: host
+    ipc: host # inter-process communication, configure container to use host's IPC namspace instead of an isolated one, processes inside container can communicate with processes on host and other containers can share host IPC namespace
     tty: true
     stdin_open: true
     command: bash
@@ -111,5 +111,5 @@ services:
           - driver: nvidia
             count: "all"
             capabilities: [gpu]
-    restart: unless-stopped
+    restart: unless-stopped # restart container unless explicitly stopped
 ```
