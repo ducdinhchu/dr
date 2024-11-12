@@ -17,7 +17,7 @@
 - `docker restart <containerid>`: restart a running container
 - `docker exec -it <containerid> <command>`: execute a command inside a running container interactively
 ### 3. Docker Run Commands
-- `docker run -d <imagename>`: run a docker images as a container in detached mode
+- `docker run -d <imagename>`: run a docker image as a container in detached mode
 - `docker run -p <hostport>:<containerport> <imagename>`: publish container ports to the host
 - `docker run -v <hostpath>:<containerpath> <imagename>`: mount the host directory or volume to the container
 - `docker run --name <containername> <imagename>`: assign a name to the container
