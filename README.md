@@ -86,26 +86,19 @@ RUN pip install deepspeed
 services:
   llamafactory:
     build:
-      dockerfile: ./docker/docker-cuda/Dockerfile
-      context: ../..
+      dockerfile: ./docker/docker-cuda/Dockerfile # Dockerfile path
+      context: ../.. # context path
       args:
-        INSTALL_BNB: false
+        INSTALL_BNB: false # arg to control installation of BNB
         INSTALL_VLLM: false
         INSTALL_DEEPSPEED: false
-        INSTALL_FLASHATTN: false
-        INSTALL_LIGER_KERNEL: false
-        INSTALL_HQQ: false
-        INSTALL_EETQ: false
-        PIP_INDEX: https://pypi.org/simple
-    container_name: llamafactory
+    container_name: llamafactory # container name
     volumes:
-      - ../../hf_cache:/root/.cache/huggingface
+      - ../../hf_cache:/root/.cache/huggingface # mount host's dir to container's dir
       - ../../ms_cache:/root/.cache/modelscope
       - ../../om_cache:/root/.cache/openmind
-      - ../../data:/app/data
-      - ../../output:/app/output
     ports:
-      - "7860:7860"
+      - "7860:7860" # map host's port to container's port
       - "8000:8000"
     ipc: host
     tty: true
