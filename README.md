@@ -101,9 +101,9 @@ services:
       - "7860:7860" # map host's port to container's port
       - "8000:8000"
     ipc: host # inter-process communication, configure container to use host's IPC namspace instead of an isolated one, processes inside container can communicate with processes on host and other containers can share host IPC namespace
-    tty: true
-    stdin_open: true
-    command: bash
+    tty: true # teletype, allocate a pseudo-TTY (terminal) to container for interactive command-line applications 
+    stdin_open: true # standard input, keep STDIN open even if not attached
+    command: bash # when container starts, it execute the `bash` shell instead of default command defined in Dockerfile
     deploy:
       resources:
         reservations:
