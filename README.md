@@ -16,16 +16,16 @@
 - `docker stop <containerid>`: stop a running container
 - `docker restart <containerid>`: restart a running container
 - `docker exec -it <containerid> <command>`: execute a command inside a running container interactively
-### 3. Container Inspection Commands
-- `docker ps`: list running containers
-- `docker ps -a`: list all containers, including stopped ones
-- `docker logs <containerid>`: fetch the logs of a specified container
-- `docker inspect <containerid>`: inspect detailed information about a container
-### 4. Docker Run Commands
+### 3. Docker Run Commands
 - `docker run -d <imagename>`: run a docker images as a container in detached mode
 - `docker run -p <hostport>:<containerport> <imagename>`: publish container ports to the host
 - `docker run -v <hostpath>:<containerpath> <imagename>`: mount the host directory or volume to the container
 - `docker run --name <containername> <imagename>`: assign a name to the container
+### 4. Container Inspection Commands
+- `docker ps`: list running containers
+- `docker ps -a`: list all containers, including stopped ones
+- `docker logs <containerid>`: fetch the logs of a specified container
+- `docker inspect <containerid>`: inspect detailed information about a container
 ### 5. Docker Clean Up Commands
 - `docker system prune`: remove all unused docker resources, including containers, images, networks, and volumns
 - `docker container prune`: remove all stopped containers
@@ -79,4 +79,44 @@ RUN pip install --upgrade nvidia-nccl-cu12==2.19.3
 
 # Install deepspeed
 RUN pip install deepspeed
+```
+
+# docker-compose.yml
+```yml
+services:
+  llamafactory:
+    build:
+      dockerfile: ./docker/docker-cuda/Dockerfile
+      context: ../..
+      args:
+        INSTALL_BNB: false
+        INSTALL_VLLM: false
+        INSTALL_DEEPSPEED: false
+        INSTALL_FLASHATTN: false
+        INSTALL_LIGER_KERNEL: false
+        INSTALL_HQQ: false
+        INSTALL_EETQ: false
+        PIP_INDEX: https://pypi.org/simple
+    container_name: llamafactory
+    volumes:
+      - ../../hf_cache:/root/.cache/huggingface
+      - ../../ms_cache:/root/.cache/modelscope
+      - ../../om_cache:/root/.cache/openmind
+      - ../../data:/app/data
+      - ../../output:/app/output
+    ports:
+      - "7860:7860"
+      - "8000:8000"
+    ipc: host
+    tty: true
+    stdin_open: true
+    command: bash
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: "all"
+            capabilities: [gpu]
+    restart: unless-stopped
 ```
