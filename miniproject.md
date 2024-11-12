@@ -1,5 +1,5 @@
-# Step 1: Prepare a Dockerfile
+# A. Prepare a Dockerfile
 
-# Step 2: Prepare a docker-compose.yml
+# B. Prepare a docker-compose.yml
 
-# Step 3: docker-compose up
+# C. docker-compose up
