@@ -1,4 +1,5 @@
-### Basic config example
-```yml
-# docker-compose.yml
-version: '3'
+### Common commands
+```bash
+# start existing container for a service
+docker-compose start
+```
