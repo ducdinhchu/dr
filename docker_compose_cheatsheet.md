@@ -63,4 +63,4 @@ services:
 ```
 
 ## Reference
-service: image, container_name, ports, volumes, environment, deploy
+service: image or build, container_name, ports, volumes, environment, deploy
