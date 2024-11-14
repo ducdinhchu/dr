@@ -21,3 +21,4 @@ docker-compose up
 # stop and remove containers, networks, volumes, and images created by up
 docker-compose down
 ```
+### docker-compose.yml
