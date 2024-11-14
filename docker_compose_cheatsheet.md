@@ -1,4 +1,4 @@
-### Common commands
+## Common commands
 ```bash
 # start existing containers for a service
 docker-compose start
@@ -21,7 +21,8 @@ docker-compose up
 # stop and remove containers, networks, volumes, and images created by up
 docker-compose down
 ```
-### docker-compose.yml
+
+## docker-compose.yml
 ```yml
 services:
   llamafactory:
@@ -60,3 +61,6 @@ services:
             capabilities: [gpu]
     restart: unless-stopped
 ```
+
+## Reference
+service: image, container_name, ports, volumes, environment, deploy
